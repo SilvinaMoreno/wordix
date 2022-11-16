@@ -11,6 +11,7 @@ Universidad Nacional del Comahue
 # Integrantes del Grupo 01
 
 - **Moreno, Silvina Danisa** - Legajo 3596 - mail: silvina.moreno@est.fi.uncoma.edu.ar - GitHub : SilvinaMoreno
+- **Paredes, Paulina Sarai** - Legajo 4345 - mail: pauly.pards@gmail.com - GitHub : PaulyPAREDES
 
 # Profesores
 
