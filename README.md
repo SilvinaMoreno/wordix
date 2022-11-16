@@ -19,4 +19,4 @@ Universidad Nacional del Comahue
 - **Rozas, Karina** -
 - **Torchinsky, David** -
 - **Torres, Cristian** -
-- **Carasco, Claudia** -
+- **Carrasco, Claudia** -
