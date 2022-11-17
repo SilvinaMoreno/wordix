@@ -6,9 +6,11 @@ include_once("wordix.php");
 /**************************************/
 
 /* Apellido, Nombre. Legajo. Carrera. mail. Usuario Github */
-/* ... COMPLETAR ... */
-/*Paredes Paulina Sarai. FAI- 4345. TUDW. pauly.pards@gmail.com. PaulyPAREDES
-/* Moreno, SIlvina Danisa. FAI 3596. TUDW. silvina.moreno@est.fi.uncoma.edu.com. SilvinaMoreno
+
+/* Campas, Fernando Nicolas, FAI-3839, TUDW, nicolascampas1@gmail.com, nicocampas
+/* Moreno, SIlvina Danisa, FAI-3596, TUDW, silvina.moreno@est.fi.uncoma.edu.com, SilvinaMoreno
+/* Paredes, Paulina Sarai, FAI-4345, TUDW, pauly.pards@gmail.com, PaulyPAREDES
+
 
 
 /**************************************/
