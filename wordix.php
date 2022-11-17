@@ -26,8 +26,12 @@ const ESTADO_LETRA_PERTENECE = "pertenece";
 /***** DEFINICION DE FUNCIONES ********/
 /**************************************/
 
-/**
- *  ****COMPLETAR Y ARREGLAR*****
+/** 
+ * (COMPLETADO!)
+ * Obliga al usuario ingresar un numero entre el rango de las variables $min y $max:
+ * @param int $min
+ * @param int $max
+ * @return int 
  */
 function solicitarNumeroEntre($min, $max)
 {
@@ -113,7 +117,7 @@ function escribirSegunEstado($texto, $estado)
 
 /**
  * Devuelve un mensaje de bienvenida
- * @param STRING $usuario 
+ * @param string $usuario 
  */
 
 function escribirMensajeBienvenida($usuario)
@@ -127,9 +131,9 @@ function escribirMensajeBienvenida($usuario)
 
 
 /**
- * Recorre una palabra y devuelve las letras
- * @param STRING $cadena
- * @return STRING
+ * Recorre una palabra y verifica que cada valor sea una letra!
+ * @param string $cadena
+ * @return boolean
  */
 function esPalabra($cadena)
 {
@@ -146,7 +150,7 @@ function esPalabra($cadena)
 
 /**
  * Analiza la cantidad de letras de una palabra ingresada por usuario
- * @return STRING 
+ * @return string 
  */
 function leerPalabra5Letras()
 {
@@ -164,7 +168,8 @@ function leerPalabra5Letras()
 
 
 /**
- * Inicia una estructura de datos Teclado. La estructura es de tipo: ¿Indexado, asociativo o Multidimensional?
+ * (COMPLETADO!)
+ * Inicia una estructura de datos Teclado. La estructura es de tipo: ASOCIATIVO:
  *@return array
  */
 function iniciarTeclado()
@@ -218,7 +223,7 @@ function escribirTeclado($teclado)
 function imprimirIntentosWordix($estructuraIntentosWordix)
 {
     $cantIntentosRealizados = count($estructuraIntentosWordix);
-    //$cantIntentosFaltantes = CANT_INTENTOS - $cantIntentosRealizados;
+    $cantIntentosFaltantes = CANT_INTENTOS - $cantIntentosRealizados;
 
     for ($i = 0; $i < $cantIntentosRealizados; $i++) {
         $estructuraIntento = $estructuraIntentosWordix[$i];
@@ -236,7 +241,7 @@ function imprimirIntentosWordix($estructuraIntentosWordix)
         }
         echo "\n";
     }
-    //echo "\n" . "Le quedan " . $cantIntentosFaltantes . " Intentos para adivinar la palabra!";
+    echo "\n" . "Le quedan " . $cantIntentosFaltantes . " Intentos para adivinar la palabra!";
 }
 
 /**
@@ -305,7 +310,7 @@ function actualizarTeclado($teclado, $estructuraPalabraIntento)
 /**
  * Determina si se ganó una palabra intento posee todas sus letras "Encontradas".
  * @param array $estructuraPalabraIntento
- * @return bool
+ * @return boolean
  */
 function esIntentoGanado($estructuraPalabraIntento)
 {
@@ -326,12 +331,21 @@ function esIntentoGanado($estructuraPalabraIntento)
 }
 
 /**
- * ****COMPLETAR***** documentación de la intefaz
+ * (TODAVIA NO LO TERMINAMOS!)
+ * Calcula el puntaje obtenido por partida: 
+ * @param int cantIntentos 
+ * @param string palabraIngresada 
+ * @return int
  */
 function obtenerPuntajeWordix()  /* ****COMPLETAR***** parámetros formales necesarios */
 {
 
     /* ****COMPLETAR***** cuerpo de la función*/
+    
+    
+    
+    
+    
     return 0;
 }
 
@@ -384,3 +398,4 @@ function jugarWordix($palabraWordix, $nombreUsuario)
 
     return $partida;
 }
+
