@@ -213,7 +213,7 @@ function escribirTeclado($teclado)
 
 /**
  * Escribe en pantalla los intentos de Wordix para adivinar la palabra
- * @param array $estruturaIntentosWordix
+ * @param array $estructuraIntentosWordix
  */
 function imprimirIntentosWordix($estructuraIntentosWordix)
 {
@@ -244,14 +244,15 @@ function imprimirIntentosWordix($estructuraIntentosWordix)
  * y la palabra que intenta adivinar la palabra wordix.
  * devuelve la estructura de intentos Wordix modificada con el intento.
  * @param string $palabraWordix
- * @param array $estruturaIntentosWordix
+ * @param array $estructuraIntentosWordix
  * @param string $palabraIntento
- * @return array estructura wordix modificada
+ * @return array 
  */
 function analizarPalabraIntento($palabraWordix, $estruturaIntentosWordix, $palabraIntento)
 {
+    //array $estructuraPalabraIntento
     $cantCaracteres = strlen($palabraIntento);
-    $estructuraPalabraIntento = []; /*almacena cada letra de la palabra intento con su estado */
+    $estructuraPalabraIntento = []; /*almacena cada letra de la palabra e intento con su estado */
     for ($i = 0; $i < $cantCaracteres; $i++) {
         $letraIntento = $palabraIntento[$i];
         $posicion = strpos($palabraWordix, $letraIntento);
