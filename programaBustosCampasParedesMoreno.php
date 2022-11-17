@@ -7,7 +7,7 @@ include_once("wordix.php");
 
 /* Apellido, Nombre. Legajo. Carrera. mail. Usuario Github */
 /* ... COMPLETAR ... */
-
+/* Moreno, SIlvina Danisa. FAI 3596. TUDW. silvina.moreno@est.fi.uncoma.edu.com. SilvinaMoreno
 
 
 /**************************************/
