@@ -33,7 +33,33 @@ function cargarColeccionPalabras()
     return ($coleccionPalabras);
 }
 
-/* ... COMPLETAR ... */
+// *****FUNCIONES CREADAS POR NOSOTROS*****
+
+/**
+ * Solicita al usuario un nombre, la funcion retorna el nick en minusculas.
+ * El nombre debe iniciar con letras.
+ * @return string
+ */
+
+function elegirNickName(){
+    // string $nickUsuario, $nickModificado, $primerCaracter
+    // boolean $esLetra
+    do{
+        echo "\nEscribe un NickName (¡Debe iniciar con letras!): ";
+        $nickUsuario = trim(fgets(STDIN));
+        $nickModificado = strtolower($nickUsuario);
+        $primerCaracter = $nickModificado[0];
+        $esLetra = ctype_alpha($primerCaracter);
+        if($esLetra == 1){
+            $esLetra = true;
+            echo "\n<<Nick registrado con éxito>> \nBienvenido ".$nickModificado;
+            return $nickModificado;
+        }else{
+            $esLetra = false;
+            echo "\nEl nick debe iniciar con letras...\n";
+        }
+    }while($esLetra == false);
+}
 
 
 
