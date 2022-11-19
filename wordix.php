@@ -409,7 +409,7 @@ function jugarWordix($palabraWordix, $nombreUsuario)
  */
 
 function elegirNickName(){
-    // string $nickUsuario, $nickModificado
+    // string $nickUsuario, $nickModificado, $primerCaracter
     // boolean $esLetra
     do{
         echo "\nEscribe un NickName (¡Debe iniciar con letras!): ";
