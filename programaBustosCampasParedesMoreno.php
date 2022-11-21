@@ -175,6 +175,7 @@ function ordenarPartidas($coleccionPartida){
  }
     // al usar la funcion uasort debe ingresarse el array e los nombre de las funciones creada de comparacion.
      uasort($coleccionPartida,"comparaPorPalabra");//Ordena los elementos usando una función de comparación definida por el usuario.. Mantiene la correlación de los índices
+     print_r($coleccionPartida); // Imprime en pantalla el arreglo
      uasort($coleccionPartida,"comparaPorNombre");
      print_r($coleccionPartida); // Imprime en pantalla el arreglo
  }
