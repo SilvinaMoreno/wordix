@@ -43,7 +43,7 @@ function cargarColeccionPalabras()
  */
 
 function solicitarJugador(){
-    // string $nickUsuario, $primerCaracter
+    // string $nickUsuario
     // boolean $esLetra
     do{
         echo "\nEscribe un nombre de usuario (¡Debe iniciar con letras!): ";
