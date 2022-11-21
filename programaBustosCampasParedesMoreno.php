@@ -83,7 +83,61 @@ function elegirNickName(){
 
     return ($coleccionPartida);  
 }
+//fin modulo
 
+// FUNCION 7 agregar una nueva palabra
+/*cree una funcion para verificar si existe ya una palabra en la colleccion de palabras
+
+/**
+ * Determina si una palabra existe en el arreglo de palabras
+ * @param array $coleccionPalabras
+ * @param string $palabra
+ * @return boolean
+ */
+ function palabraExistente($coleccionPalabras, $palabra)
+{ 
+ // Int $valor, $cantPalabra
+ // Boolean $existePalabra
+
+ $valor= 0;
+ $cantPalabra = Count($coleccionPalabras);// cuenta la cantidad de palabras
+ $existePalabra  = false;
+
+ while ($valor < $cantPalabra && !$existePalabra) {
+  $existePalabra  = $coleccionPalabras[$valor] == $palabra;// compara si la palabra es igual a alguna del arreglo
+  $valor++;
+ }
+ return $existePalabra;
+}
+//fin modulo
+
+// FUNCION AGREGAR PALABRA
+/**
+ * Permite el ingreso de una nueva palabra y verifica que esa palabra no exista en la collecion.
+ * @param array $coleccionPalabras
+ * @return array colección de palabras con la nueva palabra.
+ */
+function agregarPalabra($coleccionPalabras)
+{
+ //String $nuevaPalabra, 
+ //Boolean $verificaPalabra
+ //array $nuevo
+
+ do{
+ echo "Ingrese una palabra de 5 letras:";
+ $nuevaPalabra = strtoupper(trim(fgets(STDIN))); //convierte la palabra a MAYUSCULA
+ $verificaPalabra = palabraExistente($coleccionPalabras, $nuevaPalabra);
+  if ($verificaPalabra == false) {
+    $nuevo= array($nuevaPalabra);
+    $coleccionPalabras = array_merge($coleccionPalabras , $nuevo);// une 2 arreglo  con la funcion array_merge para agregar la nueva  palabra
+  }else {
+    echo "La palabra ya existe \n";
+   }
+ } while ($verificaPalabra == true);
+
+ return $coleccionPalabras;
+}
+//fin modulo
 
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
