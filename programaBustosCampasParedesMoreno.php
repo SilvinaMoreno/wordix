@@ -139,6 +139,47 @@ function agregarPalabra($coleccionPalabras)
 }
 //fin modulo
 
+// FUNCION 11 PARTIDAS ORDENADAS segun palabras y segun nombres de jugador
+ /**
+ *Muestra la colección de partidas ordenada
+ *por el nombre del jugador y por la palabra.
+ * @param array $coleccionPartida
+ */
+
+function ordenarPartidas($coleccionPartida){
+
+    // Esta funcion compara las palabras y las ordena de menor a mayor
+     function comparaPorPalabra($a, $b)
+ {
+     if ($a["palabraWordix"] == $b["palabraWordix"] ) {
+         $orden = 0;
+     } elseif ($a["palabraWordix"]  < $b["palabraWordix"] ) {
+         $orden = -1;
+     } else {
+         $orden = 1;
+     }
+     return $orden;
+ }
+ 
+ // Esta funcion compara los nombres y los ordena de menor a mayor
+ function comparaPorNombre($a, $b)
+ {
+     if ($a["jugador"] == $b["jugador"]) {
+         $orden = 0;
+     } elseif ($a["jugador"] < $b["jugador"]) {
+         $orden = -1;
+     } else {
+         $orden = 1;
+     }
+     return $orden;
+ }
+    // al usar la funcion uasort debe ingresarse el array e los nombre de las funciones creada de comparacion.
+     uasort($coleccionPartida,"comparaPorPalabra");//Ordena los elementos usando una función de comparación definida por el usuario.. Mantiene la correlación de los índices
+     uasort($coleccionPartida,"comparaPorNombre");
+     print_r($coleccionPartida); // Imprime en pantalla el arreglo
+ }
+//fin modulo
+
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
