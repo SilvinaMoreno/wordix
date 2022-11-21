@@ -60,7 +60,29 @@ function elegirNickName(){
         }
     }while($esLetra == false);
 }
+// FUNCION 2 CARGAR PARTIDAS
+/**
+ *Inicializa una estructura de datos con ejemplos de Partidas y devuelve
+ *la colección de partidas descrita.
+ * @return array
+ */function cargarPartida(){
 
+    //array $coleccionPartida( multidemensional ( indexado + asociativo) almacena datos de partidas)                                                     
+
+    $coleccionPartida = [];// arreglo vacio
+    $coleccionPartida [0]=["palabraWordix" => "LEJOS","jugador" => "silvina","intentos" => 1,"puntaje" => 15];// arreglo inicializado
+    $coleccionPartida [1]=["palabraWordix" => "CISNE","jugador" => "paulina","intentos" => 4,"puntaje" => 13]; 
+    $coleccionPartida [2]=["palabraWordix" => "MESSI","jugador" => "nicolas","intentos" => 2,"puntaje" => 17];
+    $coleccionPartida [3]=["palabraWordix" => "QATAR","jugador" => "ignacio","intentos" => 2,"puntaje" => 17];
+    $coleccionPartida [4]=["palabraWordix" => "HOJAS","jugador" => "silvina","intentos" => 5,"puntaje" => 11]; 
+    $coleccionPartida [5]=["palabraWordix" => "FUEGO","jugador" => "nicolas","intentos" => 3,"puntaje" => 11];
+    $coleccionPartida [6]=["palabraWordix" => "NAVES","jugador" => "ignacio","intentos" => 2,"puntaje" => 16];
+    $coleccionPartida [7]=["palabraWordix" => "PIANO","jugador" => "paulina","intentos" => 3,"puntaje" => 9];
+    $coleccionPartida [8]=["palabraWordix" => "PISOS","jugador" => "nicolas","intentos" => 6,"puntaje" => 12]; 
+    $coleccionPartida [9]=["palabraWordix" => "QUESO","jugador" => "silvina","intentos" => 5,"puntaje" => 11];
+
+    return ($coleccionPartida);  
+}
 
 
 /**************************************/
