@@ -214,6 +214,94 @@ function ordenarPartidas($coleccionPartida){
  }
 //fin modulo
 
+/**
+* FUNCION RESUMEN DE JUGADOR
+* @param array $coleccionPartida
+*/
+
+function resumenJugador ($coleccionPartida){
+    $jugadorInvocado = solicitarJugador();
+    $estadisticasJugador = [];
+    $estadisticasJugador = ["jugador"=>$jugadorInvocado,"partidas"=>0,"puntajeTotal"=>0,"victorias"=>0,"porcentajeVictoria"=>0,"intento1"=>0,"intento2"=>0,"intento3"=>0,"intento4"=>0,"intento5"=>0,"intento6"=>0];
+    $arregloPartidasJugador = obtenerPartidasJugador($coleccionPartida,$jugadorInvocado);
+    $estadisticasJugador ["partidas"] = count($arregloPartidasJugador);
+    foreach($arregloPartidasJugador as $partida){
+        $estadisticasJugador["puntajeTotal"] = $estadisticasJugador["puntajeTotal"] + $partida["puntaje"];
+        if($partida["puntaje"]>0){
+            $estadisticasJugador["victorias"]++;
+        }
+        switch ($partida["intentos"]){
+            case 1: 
+                $estadisticasJugador["intento1"]++;
+                break;
+            case 2: 
+                $estadisticasJugador["intento2"]++;
+                break;
+            case 3: 
+                $estadisticasJugador["intento3"]++;
+                break;
+            case 4: 
+                $estadisticasJugador["intento4"]++;
+                break;
+            case 5: 
+                $estadisticasJugador["intento5"]++;
+                break;
+            case 6: 
+                $estadisticasJugador["intento6"]++;
+                break;
+        }
+    }
+    $estadisticasJugador["porcentajeVictoria"] = (int)(($estadisticasJugador["victorias"]*100)/($estadisticasJugador["partidas"]));
+    
+    echo "********************************************************** \n";
+    echo "Jugador: ". $estadisticasJugador["jugador"]. "\n";
+    echo "Partidas: ". $estadisticasJugador["partidas"]. "\n";
+    echo "Puntaje Total: ". $estadisticasJugador["puntajeTotal"]. "\n";
+    echo "Victorias: " . $estadisticasJugador["victorias"]. "\n";
+    echo "Porcentaje Victorias: ". $estadisticasJugador["porcentajeVictoria"]. "\n";
+    echo "Adivinadas: \n";
+    echo "     Intento 1: ". $estadisticasJugador["intento1"]. "\n";
+    echo "     Intento 2: ". $estadisticasJugador["intento2"]. "\n";
+    echo "     Intento 3: ". $estadisticasJugador["intento3"]. "\n";
+    echo "     Intento 4: ". $estadisticasJugador["intento4"]. "\n";
+    echo "     Intento 5: ". $estadisticasJugador["intento5"]. "\n";
+    echo "     Intento 6: ". $estadisticasJugador["intento6"]. "\n";
+    echo "********************************************************** \n";
+    }
+    //OBTENER PARTIDAS JUGADOR
+    function obtenerPartidasJugador($coleccionPartida,$nombreJugador){
+    $partidasDelJugador = [];
+    $partidasDelJugador = array_filter($coleccionPartida,function($partida)use($nombreJugador){
+        return ($partida["jugador"] == $nombreJugador);
+    });
+        return $partidasDelJugador;
+    }
+    
+/**
+* FUNCION ENCONTRAR PARTIDA CON UN NUMERO SOLICITADO
+* 
+* 
+*/
+    
+function encontrarPartida (){
+$arregloPartida = cargarPartida();
+$cantPartidas = count($arregloPartida)-1;
+$solicitarNum = solicitarNumeroEntre(0,$cantPartidas); 
+$encontrarPartida = $arregloPartida[$solicitarNum];
+echo "********************************************************** \n";
+echo "Partida WORDIX ". $solicitarNum. ": palabra ". $arregloPartida[$solicitarNum]["palabraWordix"], "\n";
+echo "Jugador: ". $arregloPartida[$solicitarNum]["jugador"]. "\n";
+echo "Puntaje: ". $arregloPartida[$solicitarNum]["puntaje"]. " puntos \n";
+    if($arregloPartida[$solicitarNum]["puntaje"] > 0){
+            echo "Intento: Adivinó la palabra en ". $arregloPartida[$solicitarNum]["intentos"]. " intentos \n";
+    }else{
+            echo "Intento: No adivinó la palabra \n";
+    }
+    echo "********************************************************** \n";
+    
+    }
+    
+
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
