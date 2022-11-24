@@ -17,12 +17,16 @@ include_once("wordix.php");
 /***** DEFINICION DE FUNCIONES ********/
 /**************************************/
 
+//FUNCION 1 CARGAR COLECCION PALABRAS
+
 /**
  * Obtiene una colección de palabras
  * @return array
  */
-function cargarColeccionPalabras()
-{
+function cargarColeccionPalabras(){
+
+    //array $coleccionPalabras indexado almacena palabras
+
     $coleccionPalabras = [
         "MUJER", "QUESO", "FUEGO", "CASAS", "RASGO",
         "GATOS", "GOTAS", "HUEVO", "TINTO", "NAVES",
@@ -35,37 +39,14 @@ function cargarColeccionPalabras()
 
 // *****FUNCIONES CREADAS POR NOSOTROS*****
 
-// FUNCION 10 solicitarJugador
-/**
- * Solicita al usuario un nombre, la funcion retorna el nombre de usuario en minusculas.
- * El nombre debe iniciar con letras.
- * @return string
- */
-
-function solicitarJugador(){
-    // string $nickUsuario
-    // boolean $esLetra
-    do{
-        echo "\nEscribe un nombre de usuario (¡Debe iniciar con letras!): ";
-        $nombre = trim(fgets(STDIN));
-        $nombre = strtolower($nombre); //Esta funcion convierte un string a letra minuscula 
-        $esLetra = ctype_alpha($nombre[0]); //Esta función comprueba si el primer caracter del nombre de usuario es una letras 
-        if($esLetra == 1){
-            $esLetra = true;
-            //echo "\n<<Nick registrado con éxito>> \nBienvenido ".$nickUsuario;
-            return $nombre;
-        }else{
-            $esLetra = false;
-            echo "\nEl nick debe iniciar con letras...\n";
-        }
-    }while($esLetra == false);
-}
 // FUNCION 2 CARGAR PARTIDAS
 /**
  *Inicializa una estructura de datos con ejemplos de Partidas y devuelve
  *la colección de partidas descrita.
  * @return array
- */function cargarPartida(){
+ */
+
+ function cargarPartida(){
 
     //array $coleccionPartida( multidemensional ( indexado + asociativo) almacena datos de partidas)                                                     
 
@@ -86,8 +67,15 @@ function solicitarJugador(){
 
 //fin modulo
 
+//*********************************/
+//FALTA MODULO DE MENU DE OPCIONES /
+//*********************************/
+
+
 // FUNCION 7 agregar una nueva palabra
-/*cree una funcion para verificar si existe ya una palabra en la colleccion de palabras
+//cree una funcion para verificar si existe ya una palabra en la coleccion de palabras palabraExistente(); 
+
+// FUNCION EXTRA
 
 /**
  * Determina si una palabra existe en el arreglo de palabras
@@ -95,6 +83,7 @@ function solicitarJugador(){
  * @param string $palabra
  * @return boolean
  */
+
  function palabraExistente($coleccionPalabras, $palabra)
 { 
  // Int $valor, $cantPalabra
@@ -104,17 +93,18 @@ function solicitarJugador(){
  $cantPalabra = Count($coleccionPalabras);// cuenta la cantidad de palabras
  $existePalabra  = false;
 
- while ($valor < $cantPalabra && !$existePalabra) {
-  $existePalabra  = $coleccionPalabras[$valor] == $palabra;// compara si la palabra es igual a alguna del arreglo
-  $valor++;
- }
- return $existePalabra;
+ while($valor < $cantPalabra && !$existePalabra){
+    $existePalabra  = $coleccionPalabras[$valor] == $palabra;// compara si la palabra es igual a alguna del arreglo
+    $valor++;
 }
+return $existePalabra;
+}
+
 //fin modulo
 
-// FUNCION AGREGAR PALABRA
+// FUNCION 7 AGREGAR PALABRA
 /**
- * Permite el ingreso de una nueva palabra y verifica que esa palabra no exista en la collecion.
+ * Permite el ingreso de una nueva palabra y verifica que esa palabra no exista en la coleccion.
  * @param array $coleccionPalabras
  * @return array colección de palabras con la nueva palabra.
  */
@@ -125,18 +115,19 @@ function agregarPalabra($coleccionPalabras)
  //array $nuevo
 
  do{
- echo "Ingrese una palabra de 5 letras:";
- $nuevaPalabra = strtoupper(trim(fgets(STDIN))); //convierte la palabra a MAYUSCULA
- $verificaPalabra = palabraExistente($coleccionPalabras, $nuevaPalabra);
-  if ($verificaPalabra == false) {
-    $nuevo= array($nuevaPalabra);
-    $coleccionPalabras = array_merge($coleccionPalabras , $nuevo);// une 2 arreglo  con la funcion array_merge para agregar la nueva  palabra
-  }else {
-    echo "La palabra ya existe \n";
-   }
- } while ($verificaPalabra == true);
+    echo "Ingrese una palabra de 5 letras:";
+    $nuevaPalabra = strtoupper(trim(fgets(STDIN))); //convierte la palabra a MAYUSCULA
+    $verificaPalabra = palabraExistente($coleccionPalabras, $nuevaPalabra);
+    if ($verificaPalabra == false) {
+        $nuevo= array($nuevaPalabra);
+        $coleccionPalabras = array_merge($coleccionPalabras , $nuevo);// une 2 arreglo  con la funcion array_merge para agregar la nueva  palabra
+    }else {
+        echo "La palabra ya existe \n";
+    }
+}while ($verificaPalabra == true);
 
- return $coleccionPalabras;
+return $coleccionPalabras;
+
 }
 //fin modulo
 
@@ -170,6 +161,33 @@ function partidaGanadora($coleccionPalabra,$nombreJugador){
     }
    return  $indice ;
    }
+
+// FUNCION 10 solicitarJugador
+
+/**
+ * Solicita al usuario un nombre, la funcion retorna el nombre de usuario en minusculas.
+ * El nombre debe iniciar con letras.
+ * @return string
+ */
+
+function solicitarJugador(){
+    // string $nickUsuario
+    // boolean $esLetra
+    do{
+        echo "\nEscribe un nombre de usuario (¡Debe iniciar con letras!): ";
+        $nombre = trim(fgets(STDIN));
+        $nombre = strtolower($nombre); //Esta funcion convierte un string a letra minuscula 
+        $esLetra = ctype_alpha($nombre[0]); //Esta función comprueba si el primer caracter del nombre de usuario es una letras 
+        if($esLetra == 1){
+            $esLetra = true;
+            //echo "\n<<Nick registrado con éxito>> \nBienvenido ".$nickUsuario;
+            return $nombre;
+        }else{
+            $esLetra = false;
+            echo "\nEl nick debe iniciar con letras...\n";
+        }
+    }while($esLetra == false);
+}
 
 
 // FUNCION 11 PARTIDAS ORDENADAS segun palabras y segun nombres de jugador
@@ -308,6 +326,8 @@ echo "Puntaje: ". $arregloPartida[$solicitarNum]["puntaje"]. " puntos \n";
 
 //Declaración de variables:
 
+//CREAR una variable para llamar al arreglo de partidas cargarPartidas()
+//CREAR una variable para llamar al arreglo de palabras coleccionPalabras()
 
 //Inicialización de variables:
 
@@ -318,7 +338,7 @@ $partida = jugarWordix("MELON", strtolower("MaJo"));
 //print_r($partida);
 //imprimirResultado($partida);
 
-
+//
 
 /*
 do {
