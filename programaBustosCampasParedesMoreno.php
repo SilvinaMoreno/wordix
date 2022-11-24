@@ -70,7 +70,33 @@ function cargarColeccionPalabras(){
 //*********************************/
 //FALTA MODULO DE MENU DE OPCIONES /
 //*********************************/
-
+/**  
+ * funcion Menú de Opciones 
+ * @return int
+ */
+function seleccionOpcion(){
+    // int $numeroDeOpcion 
+    echo "MENÚ DE OPCIONES: ";
+    echo "1- Jugar al wordix con una palabra elegida";
+    echo "\n";
+    echo "2- Jugar al wordix con una palabra aleatoria.";
+    echo "\n";
+    echo "3- Mostrar una partida.";
+    echo "\n";
+    echo "4- Mostrar la primer partida ganadora ";
+    echo "\n";
+    echo "5- Mostrar resumen de jugador. ";
+    echo "\n";
+    echo "6- Mostrar listado de partida ordenado por un jugador y por palabra.";
+    echo "\n";
+    echo "7- Agregar una palabra de 5 letras a wordix. ";
+    echo "\n";
+    echo "8- Salir. ";
+    echo "\n";
+    
+    $numeroDeOpcion = solicitarNumeroEntre(1,8);
+    return $numeroDeOpcion;
+}
 
 // FUNCION 7 agregar una nueva palabra
 //cree una funcion para verificar si existe ya una palabra en la coleccion de palabras palabraExistente(); 
