@@ -47,13 +47,13 @@ function solicitarJugador(){
     // boolean $esLetra
     do{
         echo "\nEscribe un nombre de usuario (¡Debe iniciar con letras!): ";
-        $nickUsuario = trim(fgets(STDIN));
-        $nickUsuario = strtolower($nickUsuario); //Esta funcion convierte un string a letra minuscula 
-        $esLetra = ctype_alpha($nickUsuario[0]); //Esta función comprueba si el primer caracter del nombre de usuario es una letras 
+        $nombre = trim(fgets(STDIN));
+        $nombre = strtolower($nombre); //Esta funcion convierte un string a letra minuscula 
+        $esLetra = ctype_alpha($nombre[0]); //Esta función comprueba si el primer caracter del nombre de usuario es una letras 
         if($esLetra == 1){
             $esLetra = true;
             //echo "\n<<Nick registrado con éxito>> \nBienvenido ".$nickUsuario;
-            return $nickUsuario;
+            return $nombre;
         }else{
             $esLetra = false;
             echo "\nEl nick debe iniciar con letras...\n";
