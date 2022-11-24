@@ -83,6 +83,7 @@ function solicitarJugador(){
 
     return ($coleccionPartida);  
 }
+
 //fin modulo
 
 // FUNCION 7 agregar una nueva palabra
@@ -138,6 +139,36 @@ function agregarPalabra($coleccionPalabras)
  return $coleccionPalabras;
 }
 //fin modulo
+// FUNCION 8 SELECIONAR PARTIDA GANADORA
+/**
+* Obtiene índice de la primera partida ganadora.
+* @param string $nombreJugador
+* @return int
+*/
+function partidaGanadora($coleccionPalabra,$nombreJugador){
+    //Int $n, $i, $indice,$puntaje
+   
+   
+    $n= $coleccionPalabra;
+    $puntaje=0;
+    $primerPuntaje=0;
+    $i=0;
+   
+    while ( $i <= $n && ($primerPuntaje == 0)) {
+     if ( $coleccionPalabra [ $i ]["jugador"] == $nombreJugador){
+       if ( $coleccionPalabra[ $i ]["puntaje"] > $puntaje ) {
+                   
+             $primerPuntaje = 2;
+              $indice = $i;
+       }
+           else {
+           $indice = -1;
+          }
+   }
+   $i ++;
+    }
+   return  $indice ;
+   }
 
 // FUNCION 11 PARTIDAS ORDENADAS segun palabras y segun nombres de jugador
  /**
