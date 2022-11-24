@@ -139,6 +139,7 @@ function agregarPalabra($coleccionPalabras)
  return $coleccionPalabras;
 }
 //fin modulo
+
 // FUNCION 8 SELECIONAR PARTIDA GANADORA
 /**
 * Obtiene índice de la primera partida ganadora.
@@ -169,6 +170,7 @@ function partidaGanadora($coleccionPalabra,$nombreJugador){
     }
    return  $indice ;
    }
+
 
 // FUNCION 11 PARTIDAS ORDENADAS segun palabras y segun nombres de jugador
  /**
