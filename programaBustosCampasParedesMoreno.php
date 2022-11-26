@@ -485,6 +485,7 @@ function encontrarPartida ($indicePartida){
     }while($corte == false);
 }
 
+
 //FIN MODULO
     
 /**************************************/
@@ -493,40 +494,57 @@ function encontrarPartida ($indicePartida){
 
 //Declaración de variables:
 
-//CREAR una variable para llamar al arreglo de partidas cargarPartidas()
-//CREAR una variable para llamar al arreglo de palabras coleccionPalabras()
+// array $coleccionPartida, $coleccionPalabras, $coleccionUsuarios
+
 
 //Inicialización de variables:
+
+$coleccionPartida = cargarPartida();
+$coleccionPalabras = cargarColeccionPalabras();
+$coleccionUsuarios = cargarUsuarios();
 
 
 //Proceso:
 
-$partida = jugarWordix("MELON", strtolower("MaJo"));
+//$partida = jugarWordix("MELON", strtolower("MaJo")); //Partida de ejemplo
 //print_r($partida);
 //imprimirResultado($partida);
 
 //
 
-/*
+
+
+
 do {
-    $opcion = ...;
-
+    $cantPalabra= count(cargarColeccionPalabras())-1;
+    $opcionMenu = seleccionOpcion();
     
-    switch ($opcion) {
-        case 1: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 1
+    switch ($opcionMenu) { //Es una funcion similar a If, pero compara una misma variable con distintos valores.
 
-            break;
-        case 2: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 2
-
-            break;
-        case 3: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
-
-            break;
         
-            //...
+        case 1: //Jugar con una palabra elegida, se solicita nombre e indice de palabra.
+            
+            break;
+        case 2: //Jugar con una palabra aleateoria, se solicita nombre y el programa elige una palabra no jugada y al azar. 
+            
+            break;
+        case 3: //Muestra una partida elegida por el usuario, se solicita el indice de la misma 
+        
+            break;
+        case 4: //Muestra la primer partida ganada por un usuario, se solicita el nombre del mismo
+            break;
+        case 5: // Muestra un resumen con las estadisticas obtenidas por un jugador, se solicita el nombre del mismo
+            break;
+        case 6: // Muestra las partidas ordenadas alfabeticamente
+
+            break;
+        case 7: //Agrega una palabra de 5 letras
+            
+            break;
+        case 8: //SALIR
+
+            break;
+
     }
-} while ($opcion != X);
-*/
+} while ($opcionMenu != 8);
+

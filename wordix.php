@@ -42,7 +42,7 @@ function solicitarNumeroEntre($min, $max)
         echo "Debe ingresar un número entre " . $min . " y " . $max . ": ";
         $numero = trim(fgets(STDIN));
     }
-    return $numero;
+    return (int)$numero;
 }
 
 /**
