@@ -364,7 +364,30 @@ function usuarioExistente($coleccionUsuarios, $nombre)
 }
 //fin modulo
 
- 
+ /** MODULO EXTRA! (Solicitar Jugador Existente)
+ * Solicita al usuario un nombre, la funcion retorna el nombre de usuario en minusculas.
+ * El nombre debe iniciar con letras.
+ * Si el usuario no existe, retorta el cartel de "NO existe el jugador".
+ * @return string
+ */
+function solicitarJugadorExistente(){
+    do{
+        $coleccionUsuarios = cargarUsuarios();
+        echo "\nEscribe un nombre de usuario (¡Debe iniciar con letras!): ";
+        $nombre = trim(fgets(STDIN));
+        $nombre = strtolower($nombre); //Esta funcion convierte un string a letra minuscula
+        $usuarioExistente = usuarioExistente($coleccionUsuarios, $nombre);  
+        if($usuarioExistente == true){
+            $nombre = $nombre;
+        }else{
+            echo "\nNO existe el jugador. ";
+        }
+     }while($usuarioExistente == false);
+     return $nombre;
+    }
+    
+//FIN MODULO
+
 /**
  * Solicita al usuario un nombre, la funcion retorna el nombre de usuario en minusculas.
  * El nombre debe iniciar con letras.
@@ -485,66 +508,58 @@ function encontrarPartida ($indicePartida){
     }while($corte == false);
 }
 
-
 //FIN MODULO
+
+//MODULO EXTRA! (Volver al Menu)
+function volverAlMenu (){
+    // $opcionVolverMenu (cualquier tecla)
+    echo "\nPresione cualquier tecla para volver al menu principal: ";
+    $opcionVolverMenu = trim(fgets(STDIN));
+        if ($opcionVolverMenu == $opcionVolverMenu){
+    }
     
+}
+
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
 
 //Declaración de variables:
 
-// array $coleccionPartida, $coleccionPalabras, $coleccionUsuarios
-
+//CREAR una variable para llamar al arreglo de partidas cargarPartidas()
+//CREAR una variable para llamar al arreglo de palabras coleccionPalabras()
 
 //Inicialización de variables:
-
-$coleccionPartida = cargarPartida();
-$coleccionPalabras = cargarColeccionPalabras();
-$coleccionUsuarios = cargarUsuarios();
 
 
 //Proceso:
 
-//$partida = jugarWordix("MELON", strtolower("MaJo")); //Partida de ejemplo
+$partida = jugarWordix("MELON", strtolower("MaJo"));
 //print_r($partida);
 //imprimirResultado($partida);
 
 //
 
-
-
-
+/*
 do {
-    $cantPalabra= count(cargarColeccionPalabras())-1;
-    $opcionMenu = seleccionOpcion();
+    $opcion = ...;
+
     
-    switch ($opcionMenu) { //Es una funcion similar a If, pero compara una misma variable con distintos valores.
+    switch ($opcion) {
+        case 1: 
+            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 1
 
+            break;
+        case 2: 
+            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 2
+
+            break;
+        case 3: 
+            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
+
+            break;
         
-        case 1: //Jugar con una palabra elegida, se solicita nombre e indice de palabra.
-            
-            break;
-        case 2: //Jugar con una palabra aleateoria, se solicita nombre y el programa elige una palabra no jugada y al azar. 
-            
-            break;
-        case 3: //Muestra una partida elegida por el usuario, se solicita el indice de la misma 
-        
-            break;
-        case 4: //Muestra la primer partida ganada por un usuario, se solicita el nombre del mismo
-            break;
-        case 5: // Muestra un resumen con las estadisticas obtenidas por un jugador, se solicita el nombre del mismo
-            break;
-        case 6: // Muestra las partidas ordenadas alfabeticamente
-
-            break;
-        case 7: //Agrega una palabra de 5 letras
-            
-            break;
-        case 8: //SALIR
-
-            break;
-
+            //...
     }
-} while ($opcionMenu != 8);
-
+} while ($opcion != X);
+*/
