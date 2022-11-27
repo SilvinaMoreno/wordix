@@ -532,10 +532,6 @@ function jugarPalabraElegida($nombre, $cantPalabra, $coleccionPalabras, $colecci
         $i = 0;
         $palabraJugada = false;
         $tienePartidas = false;
-        $coleccionPartida = cargarPartida(); //Partidas
-        $coleccionPalabras = cargarColeccionPalabras(); //Palabras Jugadas
-        $cantPalabra = count(cargarColeccionPalabras())-1; //Cantidad de Palabras
-        $cantPartidas = count(cargarPartida()); //Cantidad de Partidas
     //EMPIEZA PROGRAMA
         $numeroPalabra = solicitarNumeroEntre(0, $cantPalabra);
         $palabra = $coleccionPalabras[$numeroPalabra];
@@ -602,7 +598,7 @@ function jugarPalabraAleatoria($nombre, $cantPalabra, $coleccionPalabras, $colec
             jugarWordix($palabra, $nombre);
         }else{
             $i = 0;
-            while($i <= $cantPartidasJugador && !$palabraJugada){
+            while($i < $cantPartidasJugador && !$palabraJugada){
                 $palabraJugada = $partidasJugador[$i]["palabraWordix"] == $palabra; 
                 $i++;
             }
