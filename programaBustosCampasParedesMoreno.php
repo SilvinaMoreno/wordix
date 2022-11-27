@@ -522,8 +522,13 @@ function volverAlMenu (){
 
 
 /**
- * Esta funcion permite corroborar si la palabra elegida ya fue jugada por un jugador
- * 
+ * Esta funcion permite seleccionar una palabra segun su indice, dentro de las ya existentes
+ * Solo aquellas que no fueron jugadas por el usuario
+ * @param string $nombre
+ * @param int $cantPalabra
+ * @param int $cantPartidas
+ * @param array $coleccionPalabras
+ * @param array $coleccionPartida
  */
 
 function jugarPalabraElegida($nombre){
@@ -571,7 +576,8 @@ function jugarPalabraElegida($nombre){
     
           
 /**
- * Esta funcion permite corroborar si la palabra elegida ya fue jugada por un jugador
+ * Esta funcion permite seleccionar una palabra al azar, dentro de las ya existentes
+ * Solo aquellas que no fueron jugadas por el usuario
  * @param string $nombre
  * @param int $cantPalabra
  * @param int $cantPartidas
