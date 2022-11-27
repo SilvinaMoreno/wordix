@@ -682,8 +682,7 @@ do {
         case 4: //Muestra la primer partida ganada por un usuario, se solicita el nombre del mismo
             break;
         case 5: // Muestra un resumen con las estadisticas obtenidas por un jugador, se solicita el nombre del mismo
-            echo "\nIngrese nombre de usuario: ";
-            $nombreJugadorIngresado = trim(fgets(STDIN));
+            $nombreJugadorIngresado = solicitarJugadorExistente();
             resumenJugador($coleccionPartida,$nombreJugadorIngresado);
             volverAlMenu();
             break;
