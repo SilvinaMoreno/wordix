@@ -674,11 +674,17 @@ do {
             volverAlMenu();
             break;
         case 3: //Muestra una partida elegida por el usuario, se solicita el indice de la misma 
-        
+            $numPartida = solicitarNumeroEntre(0,$cantPartida);
+            encontrarPartida($numPartida);
+            volverAlMenu();
             break;
         case 4: //Muestra la primer partida ganada por un usuario, se solicita el nombre del mismo
             break;
         case 5: // Muestra un resumen con las estadisticas obtenidas por un jugador, se solicita el nombre del mismo
+            echo "\nIngrese nombre de usuario: ";
+            $nombreJugadorIngresado = trim(fgets(STDIN));
+            resumenJugador($coleccionPartida,$nombreJugadorIngresado);
+            volverAlMenu();
             break;
         case 6: // Muestra las partidas ordenadas alfabeticamente
             $partidasOrdenadas = OrdenarPartidas( $coleccionPartida);
