@@ -522,13 +522,19 @@ function volverAlMenu (){
     
 }
 
+//FIN MODULO
 
 /**
- * Esta funcion permite corroborar si la palabra elegida ya fue jugada por un jugador
- * 
- */
+ * Esta funcion permite seleccionar una palabra segun su indice, dentro de las ya existentes
+ * Solo aquellas que no fueron jugadas por el usuario
+ * @param string $nombre
+ * @param int $cantPalabra
+ * @param int $cantPartidas
+ * @param array $coleccionPalabras
+ * @param array $coleccionPartida
+ * */
 
-function jugarPalabraElegida($nombre){
+function jugarPalabraElegida($nombre, $cantPalabra, $coleccionPalabras, $coleccionPartida, $cantPartidas){
     //int $i, $cantPalabras, $cantPartidas, $numeroPalabra, $cantPartidasJugador
     //array $coleccionPartida, $coleccionPalabras, $partidasJugador
     //boolean $palabraJugada, $tienePartidas 
@@ -564,13 +570,63 @@ function jugarPalabraElegida($nombre){
             }
             if($palabraJugada == true){
                 echo "\nUsted ya tiene una partida con esta palabra, elija otro número... ";
-                jugarPalabraElegida($nombre);
+                jugarPalabraElegida($nombre, $cantPalabra, $coleccionPalabras, $coleccionPartida, $cantPartidas);
+            }else{
+                jugarWordix($palabra, $nombre);
+            }
+        }
+     }
+
+//FIN MODULO
+    
+/**
+ * Esta funcion permite seleccionar una palabra al azar, dentro de las ya existentes
+ * Solo aquellas que no fueron jugadas por el usuario
+ * @param string $nombre
+ * @param int $cantPalabra
+ * @param int $cantPartidas
+ * @param array $coleccionPalabras
+ * @param array $coleccionPartida
+ */
+
+function jugarPalabraAleatoria($nombre, $cantPalabra, $coleccionPalabras, $coleccionPartida, $cantPartidas){
+    //int $i, $numeroPalabra
+    //boolean $palabraJugada, $tienePartidas 
+    //string $palabra  
+
+    //INICIALIZACIÓN DE VARIABLES
+        $i = 0;
+        $palabraJugada = false;
+        $tienePartidas = false;
+    //EMPIEZA PROGRAMA
+        $numeroPalabra = rand(0, $cantPalabra);
+        $palabra = $coleccionPalabras[$numeroPalabra];
+    //comprobar si el usuario ya jugo
+        while($i < $cantPartidas && !$tienePartidas){
+            $tienePartidas = $coleccionPartida[$i]["jugador"] == $nombre;
+            $partidasJugador = obtenerPartidasJugador($coleccionPartida, $nombre); //Obtiene las partidas del jugador
+            $cantPartidasJugador = count($partidasJugador); //Cuenta la cantidad de partidas del jugador
+            sort($partidasJugador); //Ordena las partidas por incide desde el 0
+            $i++;
+        }
+
+        if($tienePartidas == false){
+            jugarWordix($palabra, $nombre);
+        }else{
+            $i = 0;
+            while($i < $cantPartidasJugador && !$palabraJugada){
+                $palabraJugada = $partidasJugador[$i]["palabraWordix"] == $palabra; 
+                $i++;
+            }
+            if($palabraJugada == true){
+                jugarPalabraElegida($nombre, $cantPalabra, $coleccionPalabras, $coleccionPartida, $cantPartidas);
             }else{
                 jugarWordix($palabra, $nombre);
             }
         }
      }
     
+
     
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
@@ -622,13 +678,11 @@ do {
             $partidasOrdenadas = OrdenarPartidas( $coleccionPartida);
             print_r($partidasOrdenadas);
             volverAlMenu();
-
             break;
         case 7: //Agrega una palabra de 5 letras
             $palabra=leerPalabra5Letras();
             $coleccionPalabras = agregarPalabra($coleccionPalabras, $palabra);
             volverAlMenu();
-            
             break;
         case 8: //SALIR
 
