@@ -512,19 +512,7 @@ function encontrarPartida ($indicePartida){
 
 //FIN MODULO
 
-//MODULO EXTRA! (Volver al Menu)
-function volverAlMenu (){
-    // $opcionVolverMenu (cualquier tecla)
-    echo "\nPresione cualquier tecla para volver al menu principal: ";
-    $opcionVolverMenu = trim(fgets(STDIN));
-        if ($opcionVolverMenu == $opcionVolverMenu){
-    }
-    
-}
-
-//FIN MODULO
-
-/**
+/**FUNCION EXTRA!
  * Esta funcion permite seleccionar una palabra segun su indice, dentro de las ya existentes
  * Solo aquellas que no fueron jugadas por el usuario
  * @param string $nombre
@@ -579,7 +567,7 @@ function jugarPalabraElegida($nombre, $cantPalabra, $coleccionPalabras, $colecci
 
 //FIN MODULO
     
-/**
+/**FUNCION EXTRA!
  * Esta funcion permite seleccionar una palabra al azar, dentro de las ya existentes
  * Solo aquellas que no fueron jugadas por el usuario
  * @param string $nombre
@@ -625,7 +613,21 @@ function jugarPalabraAleatoria($nombre, $cantPalabra, $coleccionPalabras, $colec
             }
         }
      }
+
+//FIN MODULO
+
+//MODULO EXTRA! (Volver al Menu)
+function volverAlMenu (){
+    // $opcionVolverMenu (cualquier tecla)
+    echo "\nPresione cualquier tecla para volver al menu principal: ";
+    $opcionVolverMenu = trim(fgets(STDIN));
+        if ($opcionVolverMenu == $opcionVolverMenu){
+    }
     
+}
+
+//FIN MODULO
+
 
     
 /**************************************/
@@ -662,10 +664,14 @@ do {
     switch ($opcionMenu) { //Es una funcion similar a If, pero compara una misma variable con distintos valores.
         
         case 1: //Jugar con una palabra elegida, se solicita nombre e indice de palabra.
-            
+            $nombre = solicitarJugador();
+            jugarPalabraElegida($nombre, $cantPalabra, $coleccionPalabras, $coleccionPartida, $cantPartidas);
+            volverAlMenu();
             break;
         case 2: //Jugar con una palabra aleateoria, se solicita nombre y el programa elige una palabra no jugada y al azar. 
-            
+            $nombre = solicitarJugador();
+            jugarPalabraAleatoria($nombre, $cantPalabra, $coleccionPalabras, $coleccionPartida, $cantPartidas);
+            volverAlMenu();
             break;
         case 3: //Muestra una partida elegida por el usuario, se solicita el indice de la misma 
         
