@@ -464,8 +464,10 @@ function ordenarPartidas($coleccionPartida){
  }
 
     // al usar la funcion uasort debe ingresarse el array y los nombres de las funciones creada de comparacion.
+     echo "\n **Colección ordenadas alfabeticamente por palabra*** \n";
      uasort($coleccionPartida,"comparaPorPalabra");//Ordena los elementos usando una función de comparación definida por el usuario.. Mantiene la correlación de los índices
      print_r($coleccionPartida); // Imprime en pantalla el arreglo
+     echo "\n **Colección ordenadas alfabeticamente por nombre*** \n";
      uasort($coleccionPartida,"comparaPorNombre");
      print_r($coleccionPartida); // Imprime en pantalla el arreglo
 
@@ -522,13 +524,8 @@ function volverAlMenu (){
 
 
 /**
- * Esta funcion permite seleccionar una palabra segun su indice, dentro de las ya existentes
- * Solo aquellas que no fueron jugadas por el usuario
- * @param string $nombre
- * @param int $cantPalabra
- * @param int $cantPartidas
- * @param array $coleccionPalabras
- * @param array $coleccionPartida
+ * Esta funcion permite corroborar si la palabra elegida ya fue jugada por un jugador
+ * 
  */
 
 function jugarPalabraElegida($nombre){
@@ -574,54 +571,6 @@ function jugarPalabraElegida($nombre){
         }
      }
     
-          
-/**
- * Esta funcion permite seleccionar una palabra al azar, dentro de las ya existentes
- * Solo aquellas que no fueron jugadas por el usuario
- * @param string $nombre
- * @param int $cantPalabra
- * @param int $cantPartidas
- * @param array $coleccionPalabras
- * @param array $coleccionPartida
- */
-
-function jugarPalabraAleatoria($nombre, $cantPalabra, $coleccionPalabras, $coleccionPartida, $cantPartidas){
-    //int $i, $numeroPalabra
-    //boolean $palabraJugada, $tienePartidas 
-    //string $palabra  
-
-    //INICIALIZACIÓN DE VARIABLES
-        $i = 0;
-        $palabraJugada = false;
-        $tienePartidas = false;
-    //EMPIEZA PROGRAMA
-        $numeroPalabra = rand(0, $cantPalabra);
-        $palabra = $coleccionPalabras[$numeroPalabra];
-    //comprobar si el usuario ya jugo
-        while($i < $cantPartidas && !$tienePartidas){
-            $tienePartidas = $coleccionPartida[$i]["jugador"] == $nombre;
-            $partidasJugador = obtenerPartidasJugador($coleccionPartida, $nombre); //Obtiene las partidas del jugador
-            $cantPartidasJugador = count($partidasJugador); //Cuenta la cantidad de partidas del jugador
-            sort($partidasJugador); //Ordena las partidas por incide desde el 0
-            $i++;
-        }
-
-        if($tienePartidas == false){
-            jugarWordix($palabra, $nombre);
-        }else{
-            $i = 0;
-            while($i < $cantPartidasJugador && !$palabraJugada){
-                $palabraJugada = $partidasJugador[$i]["palabraWordix"] == $palabra; 
-                $i++;
-            }
-            if($palabraJugada == true){
-                jugarPalabraElegida($nombre, $cantPalabra, $coleccionPalabras, $coleccionPartida, $cantPartidas);
-            }else{
-                jugarWordix($palabra, $nombre);
-            }
-        }
-     }
-    
     
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
@@ -657,12 +606,10 @@ do {
     switch ($opcionMenu) { //Es una funcion similar a If, pero compara una misma variable con distintos valores.
         
         case 1: //Jugar con una palabra elegida, se solicita nombre e indice de palabra.
-            $nombre = solicitarJugador();
-            jugarPalabraElegida($nombre, $cantPalabra, $coleccionPalabras, $coleccionPartida, $cantPartidas);
+            
             break;
         case 2: //Jugar con una palabra aleateoria, se solicita nombre y el programa elige una palabra no jugada y al azar. 
-            $nombre = solicitarJugador();
-            jugarPalabraAleatoria($nombre, $cantPalabra, $coleccionPalabras, $coleccionPartida, $cantPartidas);
+            
             break;
         case 3: //Muestra una partida elegida por el usuario, se solicita el indice de la misma 
         
