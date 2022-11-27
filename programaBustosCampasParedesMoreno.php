@@ -73,7 +73,7 @@ function cargarColeccionPalabras(){
  */
 function seleccionOpcion(){
     // int $numeroDeOpcion 
-    echo "*********************MENÚ DE OPCIONES********************* \n";
+    echo "\n*********************MENÚ DE OPCIONES********************* \n";
     echo "\n1- Jugar al wordix con una palabra elegida.";
     echo "\n";
     echo "2- Jugar al wordix con una palabra aleatoria.";
@@ -540,7 +540,7 @@ function jugarPalabraElegida($nombre, $cantPalabra, $coleccionPalabras, $colecci
         $numeroPalabra = solicitarNumeroEntre(0, $cantPalabra);
         $palabra = $coleccionPalabras[$numeroPalabra];
     //comprobar si el usuario ya jugo
-        while($i = $cantPartidas && !$tienePartidas){
+        while($i <= $cantPartidas && !$tienePartidas){
             $tienePartidas = $coleccionPartida[$i]["jugador"] == $nombre;
             $partidasJugador = obtenerPartidasJugador($coleccionPartida, $nombre); //Obtiene las partidas del jugador
             $cantPartidasJugador = count($partidasJugador); //Cuenta la cantidad de partidas
@@ -590,7 +590,7 @@ function jugarPalabraAleatoria($nombre, $cantPalabra, $coleccionPalabras, $colec
         $numeroPalabra = rand(0, $cantPalabra);
         $palabra = $coleccionPalabras[$numeroPalabra];
     //comprobar si el usuario ya jugo
-        while($i < $cantPartidas && !$tienePartidas){
+        while($i <= $cantPartidas && !$tienePartidas){
             $tienePartidas = $coleccionPartida[$i]["jugador"] == $nombre;
             $partidasJugador = obtenerPartidasJugador($coleccionPartida, $nombre); //Obtiene las partidas del jugador
             $cantPartidasJugador = count($partidasJugador); //Cuenta la cantidad de partidas del jugador
@@ -602,7 +602,7 @@ function jugarPalabraAleatoria($nombre, $cantPalabra, $coleccionPalabras, $colec
             jugarWordix($palabra, $nombre);
         }else{
             $i = 0;
-            while($i < $cantPartidasJugador && !$palabraJugada){
+            while($i <= $cantPartidasJugador && !$palabraJugada){
                 $palabraJugada = $partidasJugador[$i]["palabraWordix"] == $palabra; 
                 $i++;
             }
@@ -646,6 +646,7 @@ $coleccionPalabras = cargarColeccionPalabras();
 $coleccionUsuarios = cargarUsuarios();
 
 
+
 //Proceso:
 
 //$partida = jugarWordix("MELON", strtolower("MaJo")); //Partida de ejemplo
@@ -660,7 +661,7 @@ $coleccionUsuarios = cargarUsuarios();
 do {
     $cantPalabra= count(cargarColeccionPalabras())-1;
     $opcionMenu = seleccionOpcion();
-    
+    $cantPartidas= count(cargarPartida())-1;
     switch ($opcionMenu) { //Es una funcion similar a If, pero compara una misma variable con distintos valores.
         
         case 1: //Jugar con una palabra elegida, se solicita nombre e indice de palabra.
@@ -674,7 +675,7 @@ do {
             volverAlMenu();
             break;
         case 3: //Muestra una partida elegida por el usuario, se solicita el indice de la misma 
-            $numPartida = solicitarNumeroEntre(0,$cantPartida);
+            $numPartida = solicitarNumeroEntre(0,$cantPartidas);
             encontrarPartida($numPartida);
             volverAlMenu();
             break;
