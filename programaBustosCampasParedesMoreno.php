@@ -619,9 +619,15 @@ do {
         case 5: // Muestra un resumen con las estadisticas obtenidas por un jugador, se solicita el nombre del mismo
             break;
         case 6: // Muestra las partidas ordenadas alfabeticamente
+            $partidasOrdenadas = OrdenarPartidas( $coleccionPartida);
+            print_r($partidasOrdenadas);
+            volverAlMenu();
 
             break;
         case 7: //Agrega una palabra de 5 letras
+            $palabra=leerPalabra5Letras();
+            $coleccionPalabras = agregarPalabra($coleccionPalabras, $palabra);
+            volverAlMenu();
             
             break;
         case 8: //SALIR
