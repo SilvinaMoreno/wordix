@@ -570,9 +570,8 @@ function volverAlMenu (){
 $coleccionPartida = cargarPartida();
 $coleccionPalabras = cargarColeccionPalabras();
 $coleccionUsuarios = cargarUsuarios();
-
-
-
+$cantPalabra= count($coleccionPalabras)-1;
+$cantPartidas= count($coleccionPartida)-1;
 //Proceso:
 
 //$partida = jugarWordix("MELON", strtolower("MaJo")); //Partida de ejemplo
