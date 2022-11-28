@@ -693,8 +693,14 @@ do {
             volverAlMenu();
             break;
         case 8: //SALIR
+            echo " Desea salir del menú de opciones? (s/n): "; // pregunta al usuario si desea salir
+        echo "\n"; 
+        $respuestaS = trim (fgets(STDIN)); // se guarda la respuesta
+        if ($respuestaS == "s"){ // si la respuesta es igual a "s" entonces sale
+            echo " Saliendo...";
+        }   
 
             break;
 
     }
-} while ($opcionMenu != 8);
+} while ($respuestaS == "n");
