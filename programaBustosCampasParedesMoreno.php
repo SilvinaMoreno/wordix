@@ -344,9 +344,9 @@ do{
         $nombre = $nombre;
         $cortar = true;
     }else if($respuesta == "no" ){
-        echo "\n". escribirRojo("Ingrese un nombre distinto")."\n";
-        solicitarJugador();
-        $cortar = true;
+        echo "\n". escribirRojo("Ingrese un nombre distinto");
+        $nombre = solicitarJugador();
+        $cortar = true;        
     }else if($respuesta != "si" || $respuesta != "no"){
         echo "\nIngrese una opcion válida, debe ingresar [si/no]";
         $respuesta = trim(fgets(STDIN));
@@ -354,6 +354,7 @@ do{
     }                         
 }while($cortar == false);
 return $nombre;
+
 }
 //Fin modulo.
 
@@ -400,11 +401,11 @@ return $nombre;
         if($esLetra == 1){
             $esLetra = true;
             $usuarioExiste = usuarioExistente($coleccionUsuarios, $nombre);
-            if($usuarioExiste == true){
-                agregarUsuario($nombre);
+            if($usuarioExiste == false){
+                array_push($coleccionUsuarios, $nombre);
                 $nombre = $nombre;
             }else{
-                array_push($coleccionUsuarios, $nombre);
+                $nombre = agregarUsuario($nombre);               
             }
          } else{
                 $esLetra = false;
@@ -412,6 +413,7 @@ return $nombre;
         }
      }while($esLetra == false);
      return $nombre;
+     
     }
     
 // Fin Modulo.
