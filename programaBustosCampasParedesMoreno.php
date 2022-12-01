@@ -48,6 +48,24 @@ function cargarColeccionPalabras(){
 
  function cargarPartida(){
 
+/*
+    $coleccion = [];
+$pa1 = ["palabraWordix" => "SUECO", "jugador" => "kleiton", "intentos" => 0, "puntaje" => 0];
+$pa2 = ["palabraWordix" => "YUYOS", "jugador" => "briba", "intentos" => 0, "puntaje" => 0];
+$pa3 = ["palabraWordix" => "HUEVO", "jugador" => "zrack", "intentos" => 3, "puntaje" => 9];
+$pa4 = ["palabraWordix" => "TINTO", "jugador" => "cabrito", "intentos" => 4, "puntaje" => 8];
+$pa5 = ["palabraWordix" => "RASGO", "jugador" => "briba", "intentos" => 0, "puntaje" => 0];
+$pa6 = ["palabraWordix" => "VERDE", "jugador" => "cabrito", "intentos" => 5, "puntaje" => 7];
+$pa7 = ["palabraWordix" => "CASAS", "jugador" => "kleiton", "intentos" => 5, "puntaje" => 7];
+$pa8 = ["palabraWordix" => "GOTAS", "jugador" => "kleiton", "intentos" => 0, "puntaje" => 0];
+$pa9 = ["palabraWordix" => "ZORRO", "jugador" => "zrack", "intentos" => 4, "puntaje" => 8];
+$pa10 = ["palabraWordix" => "GOTAS", "jugador" => "cabrito", "intentos" => 0, "puntaje" => 0];
+$pa11 = ["palabraWordix" => "FUEGO", "jugador" => "cabrito", "intentos" => 2, "puntaje" => 10];
+$pa12 = ["palabraWordix" => "TINTO", "jugador" => "briba", "intentos" => 0, "puntaje" => 0];
+
+array_push($coleccion, $pa1, $pa2, $pa3, $pa4, $pa5, $pa6, $pa7, $pa8, $pa9, $pa10, $pa11, $pa12);
+return $coleccion;*/
+
     //array $coleccionPartida (multidemensional ( indexado + asociativo) almacena datos de partidas)                                                     
 
     $coleccionPartida = [];// arreglo vacio
@@ -210,18 +228,22 @@ function partidaGanadora($coleccionPartida,$nombreJugador){
     $indice = -1;
     $i = 0; //número de ciclos e indice de partida 
    
-    while ( $i < $cantPartidas && ($primerPuntaje == 0)) {
-        if ( $coleccionPartida [ $i ]["jugador"] == $nombreJugador){
+    while ( $i < $cantPartidas && $coleccionPartida [ $i ]["jugador"] == $nombreJugador) {
             if ( $coleccionPartida[ $i ]["puntaje"] > $puntaje ) {
                 $primerPuntaje =  $coleccionPartida[ $i ]["puntaje"]; 
+                echo "\nPartida Ganada";
                 $indice = $i;
             }elseif ( $coleccionPartida[ $i ]["puntaje"] == $puntaje) {
+                echo "\nPartida Perdidas";
                 $indice = -1;
             }
-        }
         $i ++;
-    }
-    return  $indice ;
+}
+while ( $i < $cantPartidas && $coleccionPartida [ $i ]["jugador"] != $nombreJugador){
+    $indice = -3;
+    $i ++;
+}   
+ return  $indice ;
    }
 //Fin módulo.
 
@@ -532,8 +554,8 @@ function volverAlMenu (){
 $coleccionPartida = cargarPartida();
 $coleccionPalabras = cargarColeccionPalabras();
 $coleccionUsuarios = cargarUsuarios();
-$cantPalabra = count($coleccionPalabras)-1;
-$cantPartidas = count($coleccionPartida)-1;
+//$cantPalabra = count($coleccionPalabras)-1;
+//$cantPartidas = count($coleccionPartida)-1;
 
 do {
     $opcionMenu = seleccionOpcion();
@@ -542,15 +564,12 @@ do {
         case 1: //Jugar con una palabra elegida, se solicita nombre e indice de palabra.
             $nombre = solicitarJugador();
             do{
-            $numeroPalabra = solicitarNumeroEntre(0, (count($coleccionPalabras)-1));
+            $numeroPalabra = solicitarNumeroEntre(1, count($coleccionPalabras));
+            $numeroPalabra = $numeroPalabra-1;
             $validacion = palabraJugada($nombre, $coleccionPartida, $coleccionPalabras, $numeroPalabra);
             if(!$validacion){
                 $datosPartida= jugarWordix($coleccionPalabras[$numeroPalabra],$nombre);
-                for($i=0; $i <= $cantPartidas;$i++){
-                    if($i == $cantPartidas){
-                       array_push($coleccionPartida,$datosPartida );  
-                    }
-                }
+                array_push($coleccionPartida,$datosPartida );  
             } 
             else{
                 echo escribirRojo("El jugador ya ha jugado con la palabra seleccionada"). ", puede intentar con otra \n";
@@ -563,25 +582,22 @@ do {
         case 2: //Jugar con una palabra aleateoria, se solicita nombre y el programa elige una palabra no jugada y al azar. 
                 $nombre = solicitarJugador();
                 do{
-                    $numeroPalabra = rand(0, (count($coleccionPalabras)-1));
-                    $validacion = palabraJugada($nombre, $coleccionPartida, $coleccionPalabras, $numeroPalabra);
+                    $numeroPalabra = rand(1, count($coleccionPalabras));
+                    $validacion = palabraJugada($nombre, $coleccionPartida, $coleccionPalabras, ($numeroPalabra)-1);
                     if(!$validacion){
                         $datosPartida= jugarWordix($coleccionPalabras[$numeroPalabra],$nombre);
-                        for($i=0; $i <= $cantPartidas;$i++){
-                            if($i == $cantPartidas){
-                               array_push($coleccionPartida,$datosPartida );
-                            }
-                        }
+                        array_push($coleccionPartida,$datosPartida );
                     } 
                     else{
-                        $numeroPalabra = rand(0, (count($coleccionPalabras)-1));
+                        $numeroPalabra = rand(1, count($coleccionPalabras));
                         $validacion = true;
                     }
                      }while($validacion);
                 volverAlMenu();
                 break;
         case 3: //Muestra una partida elegida por el usuario, se solicita el indice de la misma 
-            $numPartida = solicitarNumeroEntre(0,count($coleccionPartida)-1);
+            $numPartida = solicitarNumeroEntre(1,count($coleccionPartida));
+            $numPartida = $numPartida - 1;
             encontrarPartida($numPartida,$coleccionPartida);
             volverAlMenu();
             break;
@@ -594,6 +610,10 @@ do {
                     echo "\n El jugador ";
                     echo escribirAmarillo($nombreSolicitado);
                     echo escribirRojo("No ganó ninguna partida. ")."\n";
+                } else if($partidaGanada == -3){
+                    echo "********************************************************** \n";
+                echo escribirRojo("********** NO EXISTE REGISTRO DE ESTE JUGADOR **********")."\n";
+                echo "********************************************************** \n";
                 }
             volverAlMenu();
             break;
