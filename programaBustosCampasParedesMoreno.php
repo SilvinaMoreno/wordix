@@ -224,26 +224,26 @@ function partidaGanadora($coleccionPartida,$nombreJugador){
    
     $cantPartidas = count($coleccionPartida); //contador de palabras. 
     $puntaje = 0;
-    $primerPuntaje = 0;
+    $primerPuntaje =0;
     $indice = -1;
     $i = 0; //número de ciclos e indice de partida 
    
-    while ( $i < $cantPartidas && $coleccionPartida [ $i ]["jugador"] == $nombreJugador) {
+   
+    while ( $i < $cantPartidas && ($primerPuntaje == 0)) {
+        if ( $coleccionPartida [ $i ]["jugador"] == $nombreJugador){
             if ( $coleccionPartida[ $i ]["puntaje"] > $puntaje ) {
                 $primerPuntaje =  $coleccionPartida[ $i ]["puntaje"]; 
-                echo "\nPartida Ganada";
                 $indice = $i;
             }elseif ( $coleccionPartida[ $i ]["puntaje"] == $puntaje) {
-                echo "\nPartida Perdidas";
-                $indice = -1;
+                $indice = $indice;
             }
+        }else if ( $coleccionPartida [ $i ]["jugador"] != $nombreJugador && $coleccionPartida[ $i ]["puntaje"] == $puntaje){
+            $indice = -3;
+        }
+
         $i ++;
-}
-while ( $i < $cantPartidas && $coleccionPartida [ $i ]["jugador"] != $nombreJugador){
-    $indice = -3;
-    $i ++;
-}   
- return  $indice ;
+    }
+    return  $indice ;
    }
 //Fin módulo.
 
@@ -574,7 +574,7 @@ do {
             else{
                 echo escribirRojo("El jugador ya ha jugado con la palabra seleccionada"). ", puede intentar con otra \n";
                 echo "\n";
-            }
+            } 
              }while($validacion);
     
              volverAlMenu();
